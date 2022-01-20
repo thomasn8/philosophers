@@ -6,7 +6,7 @@
 /*   By: tnanchen <thomasnanchen@hotmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 19:42:19 by tnanchen          #+#    #+#             */
-/*   Updated: 2022/01/20 14:48:36 by tnanchen         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:21:58 by tnanchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	arg_error(char *param)
 static void	save_args(int ac, char **av, t_args *args)
 {
 	args->n = atoi(av[1]);
-	args->time_to_die = atoi(av[2]);
-	// args->time_to_die = atoi(av[2]) + 5;	// add 5 ms of delay for slow processors (can't put more than 9 because of the 10ms death check delay)
+	// args->time_to_die = atoi(av[2]);
+	args->time_to_die = atoi(av[2]) + 5;	// add 5 ms of delay for slow processors (can't put more than 9 because of the 10ms death check delay)
 	args->time_to_eat = atoi(av[3]);
 	args->time_to_sleep = atoi(av[4]);
 	if (ac == 6)
