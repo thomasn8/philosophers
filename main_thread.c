@@ -6,7 +6,7 @@
 /*   By: tnanchen <thomasnanchen@hotmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 22:05:53 by tnanchen          #+#    #+#             */
-/*   Updated: 2022/01/20 15:28:50 by tnanchen         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:52:26 by tnanchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,17 @@ static int	thread_error(void)
 
 static int	free_all(t_table_infos *table, int msg)
 {
-	usleep(5000);
-	pthread_mutex_lock(&table->mutex);
-	pthread_mutex_lock(&table->mutex2);
-	free(table->philos);
+	(void)	msg;
 
+	free(table->philos);
 	free(table->forks);
-	pthread_mutex_unlock(&table->mutex);
-	pthread_mutex_unlock(&table->mutex);
 	// pthread_mutex_destroy(&(table->mutex));
 	// pthread_mutex_destroy(&(table->mutex2));
-	if (msg == 1)
-	{
-		printf("%sTHREADS are unfair! Please, ", RED);
-		printf("let the philosophers enough time to digest...%s\n", DEFAULT);
-	}
+	// if (msg == 1)
+	// {
+	// 	printf("%sTHREADS are unfair! Please, ", RED);
+	// 	printf("let the philosophers enough time to digest...%s\n", DEFAULT);
+	// }
 	return (1);
 }
 
