@@ -6,7 +6,7 @@
 /*   By: tnanchen <thomasnanchen@hotmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:51:18 by tnanchen          #+#    #+#             */
-/*   Updated: 2022/01/20 10:58:56 by tnanchen         ###   ########.fr       */
+/*   Updated: 2022/01/20 11:20:18 by tnanchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*odd_philos_threads(void *arg)
 	current += 1;
 	index = current;
 	pthread_mutex_unlock(&table->mutex);
-	usleep(n * 25);
+	usleep(n * 20);
 	if (index + 1 == n)
 		usleep(table->args->time_to_eat * 1000);
 	if (is_even_or_odd(table->philos[index].id) == EVEN)
@@ -51,7 +51,7 @@ void	*even_philos_threads(void *arg)
 	current += 1;
 	index = current;
 	pthread_mutex_unlock(&table->mutex);
-	usleep(n * 25);
+	usleep(n * 20);
 	if (is_even_or_odd(table->philos[index].id) == ODD)
 		usleep(100);
 	while (1)
