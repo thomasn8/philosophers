@@ -6,7 +6,7 @@
 /*   By: tnanchen <thomasnanchen@hotmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 22:05:53 by tnanchen          #+#    #+#             */
-/*   Updated: 2022/01/20 15:52:26 by tnanchen         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:47:06 by tnanchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,10 @@ static int	thread_error(void)
 	return (2);
 }
 
-static int	free_all(t_table_infos *table, int msg)
+static int	free_all(t_table_infos *table)
 {
-	(void)	msg;
-
 	free(table->philos);
 	free(table->forks);
-	// pthread_mutex_destroy(&(table->mutex));
-	// pthread_mutex_destroy(&(table->mutex2));
-	// if (msg == 1)
-	// {
-	// 	printf("%sTHREADS are unfair! Please, ", RED);
-	// 	printf("let the philosophers enough time to digest...%s\n", DEFAULT);
-	// }
 	return (1);
 }
 
@@ -39,7 +30,6 @@ static int	main_thread(t_table_infos *table, int n)
 	pthread_t		*th;
 	int				i;
 	void			*(*function_ptr)();
-	int				ret;
 
 	th = malloc(n * sizeof(pthread_t));
 	if (!th)
@@ -56,9 +46,8 @@ static int	main_thread(t_table_infos *table, int n)
 		if (pthread_create(&th[i], NULL, function_ptr, table) != 0)
 			return (thread_error());
 	}
-	ret = check_end_looper(table, n);
-	if (ret)
-		return (free_all(table, ret));
+	if (check_end_looper(table, n))
+		return (free_all(table));
 	return (0);
 }
 

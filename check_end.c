@@ -6,7 +6,7 @@
 /*   By: tnanchen <thomasnanchen@hotmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 14:34:39 by tnanchen          #+#    #+#             */
-/*   Updated: 2022/01/20 15:24:49 by tnanchen         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:49:50 by tnanchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_death(t_table_infos *table, int n)
 		if ((table->time->timestamp_in_ms - table->philos[i].last_meal)
 			> table->args->time_to_die)
 		{
-			// usleep(5000);
+			get_time_in_ms(table->time, table->time->prog_start);
 			printf("%s%d %d died%s\n", RED, table->time->timestamp_in_ms,
 				table->philos[i].id, DEFAULT);
 			return (1);
@@ -45,6 +45,7 @@ static int	check_meals(t_table_infos *table, int n)
 			break ;
 		if (i == n - 1)
 		{
+			get_time_in_ms(table->time, table->time->prog_start);
 			printf("%s%d MIAM! All philosophers had %d meals.%s\n", GREEN,
 				table->time->timestamp_in_ms, table->args->meals_goal, DEFAULT);
 			return (1);
